@@ -4,8 +4,13 @@ https://leetcode.com/problems/peak-index-in-a-mountain-array/
 '''
 class Solution:
     def peakIndexInMountainArray(self, arr: List[int]) -> int:
-        counter = 0
-        for i in range(1, len(arr)-1):
-            if arr[i-1] < arr[i]:
-                counter = i
-        return counter
+        left = 0
+        right = len(arr)-1
+        while left <= right:
+            mid = (left + right) // 2
+            if arr[mid] > arr[mid+1] and arr[mid] > arr[mid-1]:
+                return mid
+            elif arr[mid] > arr[mid-1]:
+                left = mid
+            else:
+                right = mid
