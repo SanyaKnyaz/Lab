@@ -2,8 +2,21 @@
 912. Sort an Array
 https://leetcode.com/problems/sort-an-array/
 '''
+# сортировка подсчетом
+def my_count_sort(l):
+    minimum = min(l)
+    size = max(l) - minimum + 1
+    count_list = [0] * size
+    res = []
+    for x in l:
+        count_list[x - minimum] += 1
+    for i in range(len(count_list)):
+        res += [i + minimum] * count_list[i]
+    return res
+
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
+        #return my_count_sort(nums)
         if len(nums) <= 1:
             return nums
         l = len(nums)
